@@ -12,7 +12,7 @@ class SegCaps(object):
     self.is_train = is_train
 
     print (config.batch_size)
-    num_classes=256 #182
+    num_classes=3 #182
     batch_size = 2 #32
     self.images = tf.placeholder(tf.float32, [batch_size, 512, 512, 3]) #initially 512,512,3 for Gray Images
     self.labels = tf.placeholder(tf.float32, [batch_size, 512, 512, num_classes]) #initially 512,512, 256 for Binary Segmentation
