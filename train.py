@@ -37,16 +37,16 @@ num_epochs=201
 def main():
   # Get configuration
   config = get_config()
-  tf_config = tf.ConfigProto(allow_soft_placement=True)
+  tf_config = tf.compat.v1.ConfigProto(allow_soft_placement=True)
   tf_config.gpu_options.visible_device_list = config.device
   #with tf.Session(init) as sess:
-  with tf.Session(config=tf_config) as sess:
+  with tf.compat.v1.Session(config=tf_config) as sess:
     #for d in ['/device:GPU:0','/device:GPU:1','/device:GPU:2']:
     with tf.device('/device:GPU:0'):
       # model = SegCaps(sess, config, is_train=True)
       # with tf.variable_scope("model") as scope:
       model = SegCaps(sess, config, is_train=True)
-      sess.run(tf.global_variables_initializer())
+      sess.run(tf.compat.v1.global_variables_initializer())
       # with tf.variable_scope(scope, reuse=True):
       # model2 = SegCaps(sess, config, is_train=True)
       images, labels = ImageMaskGenerator('dataset/annotations/val2017/', 'dataset/images/val2017/')
@@ -59,7 +59,7 @@ def main():
 
 if __name__=="__main__":
   # To reproduce the result
-  tf.set_random_seed(2018)
+  tf.random.set_seed(2018)
   np.random.seed(2018)
   random.seed(2018)
   main()
