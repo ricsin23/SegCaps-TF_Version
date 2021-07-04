@@ -17,7 +17,7 @@ import tensorflow.keras.utils as to_categorical
 from keras.preprocessing.image import ImageDataGenerator
 
 batch_size=2
-num_classes=256
+num_classes=3
 def mask2onehot(path):
 	maskbatch=[]
 	maskbatch=np.zeros((batch_size,512,512,num_classes))
@@ -30,7 +30,7 @@ def mask2onehot(path):
 		im= np.asarray(im)
 		#read the pixel and it is the classID
 		#convert image Labels(classID) to one-hot encoding
-		encoded = to_categorical.to_categorical(im, num_classes=256)
+		encoded = to_categorical.to_categorical(im, num_classes=3)
 		print ("one hot encoded:",encoded)
 		print ("image encoded shape:",encoded.shape)
 		maskbatch[i]=encoded
