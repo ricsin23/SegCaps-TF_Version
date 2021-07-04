@@ -13,7 +13,7 @@ import os
 import numpy as np
 from PIL import Image
 #one hot encoding from Keras: https://machinelearningmastery.com/how-to-one-hot-encode-sequence-data-in-python/
-from keras.utils import to_categorical
+import tenserflow.keras.utils as to_categorical
 from keras.preprocessing.image import ImageDataGenerator
 
 batch_size=2
@@ -30,7 +30,7 @@ def mask2onehot(path):
 		im= np.asarray(im)
 		#read the pixel and it is the classID
 		#convert image Labels(classID) to one-hot encoding
-		encoded = to_categorical(im, num_classes=3)
+		encoded = to_categorical.to_categorical(im, num_classes=3)
 		print ("one hot encoded:",encoded)
 		print ("image encoded shape:",encoded.shape)
 		maskbatch[i]=encoded
